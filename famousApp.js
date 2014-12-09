@@ -1,5 +1,5 @@
 if(Meteor.isClient){
-	Template.login.events({
+	Template.loginForm.events({
 		'submit form': function(e){
 			e.preventDefault();
 			console.log("logging in");
@@ -20,6 +20,14 @@ if(Meteor.isClient){
 	Template.loginSuccess.helpers({
 		name: function(){
 			return Meteor.user()? Meteor.user().profile.name.firstName : '';
+		}
+	})
+
+	Template.loginSuccess.events({
+		'click #logout': function(e){
+			e.preventDefault();
+			Meteor.logout();
+			Router.go('/');
 		}
 	})
 
